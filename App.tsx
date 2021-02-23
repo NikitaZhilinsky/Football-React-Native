@@ -49,7 +49,7 @@ function HomeScreen({ navigation }: {navigation: any}) {
         />
       </View>
       <Image 
-        source={require('./titlehome.jpg')}
+        source={require('./src/img/titlehome.jpg')}
         style={{ width: 300, height: 250 }} />
     </View>
   );
