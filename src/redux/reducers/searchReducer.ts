@@ -1,9 +1,16 @@
 import { RECEIVE_API_DATA } from "../actions";
 
-const searchReducer = (state = {}, { type, data }) => {
-  switch (type) {
+const initialState = {
+  data: []
+}
+
+const searchReducer = (state = initialState, action) => {
+  switch (action.type) {
     case RECEIVE_API_DATA:
-      return data;
+      return {
+        ...state,
+        data,
+      }
     default:
       return state;
   }

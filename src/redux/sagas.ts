@@ -1,8 +1,8 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 import { fetchData } from "./api";
-import { REQUEST_API_DATA, receiveApiData } from "./actions";
+import { receiveApiData, REQUEST_API_DATA } from "./actions";
 
-function* getApiData(action: any) {
+function* getApiData() {
     try {
       const data = yield call(fetchData);
       yield put(receiveApiData(data));
@@ -12,5 +12,5 @@ function* getApiData(action: any) {
   }
 
   export default function* mySaga() {
-    yield takeLatest(REQUEST_API_DATA, getApiData);
+    yield takeEvery(REQUEST_API_DATA, getApiData);
   }

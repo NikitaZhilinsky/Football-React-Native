@@ -24,6 +24,7 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { requestApiData } from './src/redux/actions'
 
 // import {
 //   Header,
@@ -46,11 +47,12 @@ type HomeProps = {
 
 const HomeScreen = ({ navigation }: HomeProps) => {
 
-  // const dispatch = useDispatch();
-  // const popa = () => {
-  //   dispatch function
-  //   navigation
-  // }
+  const dispatch = useDispatch();
+
+  const startSearch = () => {
+    dispatch(requestApiData())
+    navigation.navigate('ListResult')
+  }
 
   return (
     <View style={styles.home_container}>
@@ -63,7 +65,8 @@ const HomeScreen = ({ navigation }: HomeProps) => {
         />
         <Button
           title="Go"
-          onPress={() => navigation.navigate('ListResult')}
+          // onPress={() => navigation.navigate('ListResult')}
+          onPress={startSearch}
         />
       </View>
       <Image 
