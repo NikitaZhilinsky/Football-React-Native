@@ -10,6 +10,8 @@
 
 import React from 'react';
 import 'react-native-gesture-handler';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import store from './src/redux/store'
 import {
   StyleSheet,
   View,
@@ -21,6 +23,7 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 // import {
 //   Header,
@@ -32,7 +35,22 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 declare const global: {HermesInternal: null | {}};
 
-function HomeScreen({ navigation }: {navigation: any}) {
+type HomeScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'HomeScreen'
+>;
+
+type HomeProps = {
+  navigation: HomeScreenNavigationProp;
+};
+
+const HomeScreen = ({ navigation }: HomeProps) => {
+
+  // const dispatch = useDispatch();
+  // const popa = () => {
+  //   dispatch function
+  //   navigation
+  // }
 
   return (
     <View style={styles.home_container}>
@@ -55,7 +73,19 @@ function HomeScreen({ navigation }: {navigation: any}) {
   );
 }
 
-function ListResult({ navigation }: {navigation: any}) {
+type ListResultScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'ListResult'
+>;
+
+type ResultProps = {
+  navigation: ListResultScreenNavigationProp;
+};
+
+const ListResult = ({ navigation }: ResultProps) => {
+
+  // const data = useSelector(state => state)
+
   return (
     <View style={styles.results_container}>
       <Text>ListResult</Text>
@@ -67,7 +97,8 @@ function ListResult({ navigation }: {navigation: any}) {
   );
 }
 
-function Property() {
+const Property = () => {
+
   return (
     <View style={styles.property_container}>
       <Text>Property</Text>
@@ -75,46 +106,54 @@ function Property() {
   );
 }
 
-const Stack = createStackNavigator();
+type RootStackParamList = {
+  HomeScreen: undefined;
+  ListResult: undefined;
+  Property: undefined;
+};
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <StatusBar
-        barStyle="light-content" />
-      <Stack.Navigator>
-        <Stack.Screen 
-          name="Home" 
-          component={HomeScreen} 
-          options={{ 
-            title: "Property Finder",
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            }, 
-          }} 
-        />
-        <Stack.Screen 
-          name="ListResult" 
-          component={ListResult} 
-          options={{ 
-            title: "Results",
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            }, 
-          }} 
-        />
-        <Stack.Screen 
-          name="Property" 
-          component={Property} 
-          options={{ 
-            title: "Property",
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            }, 
-          }} 
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <StatusBar
+          barStyle="light-content" />
+        <Stack.Navigator>
+          <Stack.Screen 
+            name="HomeScreen" 
+            component={HomeScreen} 
+            options={{ 
+              title: "Property Finder",
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              }, 
+            }} 
+          />
+          <Stack.Screen 
+            name="ListResult" 
+            component={ListResult} 
+            options={{ 
+              title: "Results",
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              }, 
+            }} 
+          />
+          <Stack.Screen 
+            name="Property" 
+            component={Property} 
+            options={{ 
+              title: "Property",
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              }, 
+            }} 
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   )
 };
 
