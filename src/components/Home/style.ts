@@ -1,6 +1,14 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ViewStyle, TextStyle, TextInputProps, ImageStyle } from 'react-native';
 
-export const styles = StyleSheet.create({
+type Styles = {
+  home_container: ViewStyle;
+  home_text: TextStyle;
+  home_search: TextStyle;
+  home_input: TextInputProps;
+  home_image: ImageStyle;
+}
+
+export const styles = StyleSheet.create<Styles>({
   home_container: { 
     flex: 1, 
     alignItems: 'center', 
@@ -25,4 +33,8 @@ export const styles = StyleSheet.create({
     borderRadius: 7,
     marginRight: 10,
   },
+  home_image: { 
+    width: 300, 
+    height: 250 
+  }
 });

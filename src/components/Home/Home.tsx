@@ -45,7 +45,7 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
       </View>
       <Image 
         source={require('./src/img/titlehome.jpg')}
-        style={{ width: 300, height: 250 }} />
+        style={styles.home_image} />
     </View>
   );
 }

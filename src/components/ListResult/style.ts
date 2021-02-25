@@ -1,6 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ViewStyle } from 'react-native';
 
-export const styles = StyleSheet.create({
+type Styles = {
+  results_container: ViewStyle;
+}
+
+export const styles = StyleSheet.create<Styles>({
   results_container: { 
     flex: 1, 
     alignItems: 'center', 
