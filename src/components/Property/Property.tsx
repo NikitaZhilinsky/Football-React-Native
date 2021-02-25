@@ -7,7 +7,7 @@ import { styles } from './style';
 
 export const Property = () => {
 
-return (
+  return (
     <View style={styles.property_container}>
       <Text>Property</Text>
     </View>

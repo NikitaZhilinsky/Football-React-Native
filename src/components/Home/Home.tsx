@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { styles } from './style';
 
-import { requestApiData } from '../../redux/actions';
+import { requestApiData } from '../../redux/actions/searchActions';
 
 export const HomeScreen = ({ navigation }: HomeProps) => {
 

@@ -32,6 +32,7 @@ export const styles = StyleSheet.create<Styles>({
     borderWidth: 1,
     borderRadius: 7,
     marginRight: 10,
+    color: '#1e90ff',
   },
   home_image: { 
     width: 300, 
