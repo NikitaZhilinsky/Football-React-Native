@@ -1,20 +1,11 @@
 import React from 'react';
+import { ResultProps } from '../../navigation/types';
 import {
   View,
   Text,
   Button
 } from 'react-native';
 import { styles } from './style';
-import { StackNavigationProp } from '@react-navigation/stack';
-
-type ListResultScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  'ListResult'
->;
-
-type ResultProps = {
-  navigation: ListResultScreenNavigationProp;
-};
 
 export const ListResult = ({ navigation }: ResultProps) => {
 

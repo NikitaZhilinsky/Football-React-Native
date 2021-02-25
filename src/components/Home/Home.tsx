@@ -1,4 +1,5 @@
 import React from 'react';
+import { HomeProps } from '../../navigation/types';
 import {
   View,
   Text,
@@ -7,17 +8,8 @@ import {
   Image,
 } from 'react-native';
 import { styles } from './style';
-import { StackNavigationProp } from '@react-navigation/stack';
+
 import { requestApiData } from '../../redux/actions';
-
-type HomeScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  'HomeScreen'
->;
-
-type HomeProps = {
-  navigation: HomeScreenNavigationProp;
-};
 
 export const HomeScreen = ({ navigation }: HomeProps) => {
 
@@ -44,7 +36,7 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
         />
       </View>
       <Image 
-        source={require('./src/img/titlehome.jpg')}
+        source={require('../../img/titlehome.jpg')}
         style={styles.home_image} />
     </View>
   );
