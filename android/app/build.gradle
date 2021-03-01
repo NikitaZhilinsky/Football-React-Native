@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.realtyrn"
+        applicationId "com.footballrn"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

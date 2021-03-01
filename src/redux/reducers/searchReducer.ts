@@ -8,7 +8,7 @@ const initialState = {
   data: []
 }
 
-const searchReducer = (state = initialState, action: receiveApiDataType) => {
+export const searchReducer = (state = initialState, action: receiveApiDataType) => {
   switch (action.type) {
     case RECEIVE_API_DATA:
       return {
@@ -19,5 +19,3 @@ const searchReducer = (state = initialState, action: receiveApiDataType) => {
       return state;
   }
 };
-
-export default searchReducer

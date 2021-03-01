@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "RealtyRN-tvOS.app"
-               BlueprintName = "RealtyRN-tvOS"
-               ReferencedContainer = "container:RealtyRN.xcodeproj">
+               BuildableName = "FootballRN-tvOS.app"
+               BlueprintName = "FootballRN-tvOS"
+               ReferencedContainer = "container:FootballRN.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "RealtyRN-tvOSTests.xctest"
-               BlueprintName = "RealtyRN-tvOSTests"
-               ReferencedContainer = "container:RealtyRN.xcodeproj">
+               BuildableName = "FootballRN-tvOSTests.xctest"
+               BlueprintName = "FootballRN-tvOSTests"
+               ReferencedContainer = "container:FootballRN.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "RealtyRN-tvOS.app"
-            BlueprintName = "RealtyRN-tvOS"
-            ReferencedContainer = "container:RealtyRN.xcodeproj">
+            BuildableName = "FootballRN-tvOS.app"
+            BlueprintName = "FootballRN-tvOS"
+            ReferencedContainer = "container:FootballRN.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "RealtyRN-tvOS.app"
-            BlueprintName = "RealtyRN-tvOS"
-            ReferencedContainer = "container:RealtyRN.xcodeproj">
+            BuildableName = "FootballRN-tvOS.app"
+            BlueprintName = "FootballRN-tvOS"
+            ReferencedContainer = "container:FootballRN.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

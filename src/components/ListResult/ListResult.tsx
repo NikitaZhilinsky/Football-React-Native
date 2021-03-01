@@ -1,5 +1,6 @@
 import React from 'react';
 import { ResultProps } from '../../navigation/types';
+import { useSelector } from 'react-redux';
 import {
   View,
   Text,
@@ -9,7 +10,9 @@ import { styles } from './style';
 
 export const ListResult = ({ navigation }: ResultProps) => {
 
-  // const data = useSelector(state => state)
+  const data = useSelector(state => state)
+  console.log(data);
+  
   
   return (
     <View style={styles.results_container}>

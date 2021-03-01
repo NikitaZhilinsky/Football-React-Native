@@ -2,10 +2,8 @@ import { StyleSheet, ViewStyle, TextStyle, TextInputProps, ImageStyle } from 're
 
 type Styles = {
   home_container: ViewStyle;
-  home_text: TextStyle;
   home_search: TextStyle;
   home_input: TextInputProps;
-  home_image: ImageStyle;
 }
 
 export const styles = StyleSheet.create<Styles>({
@@ -14,11 +12,6 @@ export const styles = StyleSheet.create<Styles>({
     alignItems: 'center', 
     justifyContent: 'center' ,
     backgroundColor: '#eae9ef',
-  },
-  home_text: {
-    marginVertical: 5, 
-    color: '#696969', 
-    fontSize: 19,
   },
   home_search: {
     flexDirection: 'row',
@@ -33,9 +26,5 @@ export const styles = StyleSheet.create<Styles>({
     borderRadius: 7,
     marginRight: 10,
     color: '#1e90ff',
-  },
-  home_image: { 
-    width: 300, 
-    height: 250 
   }
 });

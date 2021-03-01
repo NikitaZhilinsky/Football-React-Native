@@ -11,6 +11,6 @@ function* getApiData() {
   }
 }
 
-export default function* mySaga() {
+export function* mySaga() {
   yield takeEvery(REQUEST_API_DATA, getApiData);
 }
