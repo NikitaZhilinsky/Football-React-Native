@@ -1,9 +1,10 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { fetchData } from "../api/searchAPI";
-import { receiveApiData, REQUEST_API_DATA } from "../actions/searchActions";
+import { requestApiData, receiveApiData, WATCH_API_DATA } from "../actions/searchActions";
 
 function* getApiData() {
   try {
+    yield put(requestApiData());
     const data = yield call(fetchData);
     yield put(receiveApiData(data));
   } catch (e) {
@@ -12,5 +13,5 @@ function* getApiData() {
 }
 
 export function* mySaga() {
-  yield takeEvery(REQUEST_API_DATA, getApiData);
+  yield takeEvery(WATCH_API_DATA, getApiData);
 }
