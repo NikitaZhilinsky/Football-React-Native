@@ -7,7 +7,6 @@ import {
   Image,
   FlatList,
   TouchableHighlight,
-  Alert,
 } from 'react-native';
 import { 
   Modal, 
@@ -17,26 +16,30 @@ import {
   ActivityIndicator 
 } from 'react-native-paper';
 import { styles } from './style';
-import { watchApiData } from '../../redux/actions/selectActions';
+import { watchLeaguesData } from '../../redux/actions/leaguesActions';
+import { watchTeamsData } from '../../redux/actions/teamsActions';
 import { RootState } from '../../redux/reducers/rootReducer';
 
 export const HomeScreen = ({ navigation }: HomeProps) => {
 
-  const dispatch = useDispatch();
-
   const [visible, setVisible] = React.useState(false);
   const hideModal = () => setVisible(false);
 
-  const loading = useSelector((state: RootState) => state.selectReducer.loading);
-  console.log(loading);
+  const loading = useSelector((state: RootState) => state.leaguesReducer.loading);
+  // console.log(loading);
   
-  const competitions = useSelector((state: RootState) => state.selectReducer.data);
+  const competitions = useSelector((state: RootState) => state.leaguesReducer.data);
   // console.log(competitions);
 
+  const dispatch = useDispatch();
+
   const selectLeague = () => {
-    dispatch(watchApiData());
+    dispatch(watchLeaguesData());
     setVisible(true);
-    // navigation.navigate('ListResult')
+  }
+  const getTeams = (id: number) => {
+    dispatch(watchTeamsData(id));
+    navigation.navigate('ListResult');
   }
 
   return (
@@ -59,7 +62,8 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
                 <TouchableHighlight
                   activeOpacity={0.6}
                   underlayColor="#DDDDDD" 
-                  onPress={() => alert("Hello!")}                 
+                  // onPress={() => getTeams(item.id)}                 
+                  onPress={() => getTeams(item.id)}                 
                 >
                   <View style={styles.league_cell}>
                     <Text style={styles.league_name}>{item.name}</Text>          

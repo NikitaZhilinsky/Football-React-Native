@@ -17,8 +17,12 @@ const StackNavigator = () => {
         component={HomeScreen} 
         options={{ 
           title: "Football Stats",
+          headerStyle: {
+
+          },
           headerTitleStyle: {
             fontWeight: 'bold',
+            textAlign: "center",
           }, 
         }} 
       />

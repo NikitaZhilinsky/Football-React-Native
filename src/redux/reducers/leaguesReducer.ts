@@ -1,11 +1,11 @@
 import { 
-  REQUEST_API_DATA,
-  requestApiDataType,
-  RECEIVE_API_DATA, 
-  receiveApiDataType,
-  FAILED_API_DATA,
-  failedApiDataType
-} from "../actions/selectActions";
+  REQUEST_LEAGUES_DATA,
+  requestLeaguesDataType,
+  RECEIVE_LEAGUES_DATA, 
+  receiveLeaguesDataType,
+  FAILED_LEAGUES_DATA,
+  failedLeaguesDataType
+} from "../actions/leaguesActions";
 
 export type Competition = {
   area: {
@@ -24,7 +24,7 @@ export type Competition = {
   lastUpdated: string,
   name: string,
   numberOfAvailableSeasons: number,
-  plan: string
+  plan: string,
 }
 
 type initialStateType = {
@@ -37,22 +37,22 @@ const initialState = {
   loading: false,
 }
 
-export type ActionsTypes = requestApiDataType | receiveApiDataType | failedApiDataType;
+export type ActionsTypes = requestLeaguesDataType | receiveLeaguesDataType | failedLeaguesDataType;
 
-export const selectReducer = (state = initialState, action: ActionsTypes): initialStateType => {
+export const leaguesReducer = (state = initialState, action: ActionsTypes): initialStateType => {
   switch (action.type) {
-    case REQUEST_API_DATA:
+    case REQUEST_LEAGUES_DATA:
       return {
         ...state,
         loading: true,
       }
-    case RECEIVE_API_DATA:
+    case RECEIVE_LEAGUES_DATA:
       return {
         ...state,
         data: action.data,
         loading: false,
       }
-    case FAILED_API_DATA:
+    case FAILED_LEAGUES_DATA:
       return {
         ...state,
         loading: true,

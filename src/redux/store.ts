@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from './reducers/rootReducer';
-import { selectSaga } from "./sagas/selectSaga";
+import { leaguesSaga } from "./sagas/leaguesSaga";
+import { teamsSaga } from "./sagas/teamsSaga";
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -11,6 +12,7 @@ const store = createStore(
 //   compose(applyMiddleware(sagaMiddleware)),
 );
 
-sagaMiddleware.run(selectSaga);
+sagaMiddleware.run(leaguesSaga);
+sagaMiddleware.run(teamsSaga);
 
 export default store;
