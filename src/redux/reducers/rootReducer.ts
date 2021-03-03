@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { searchReducer } from './searchReducer'
+import { selectReducer } from './selectReducer'
 
 const state = {
-  searchReducer
+  selectReducer
 };
 
 const rootReducer = combineReducers({

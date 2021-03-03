@@ -8,6 +8,6 @@ export const fetchData = async () => {
     const data = await response.json();
     return data.competitions;
   } catch (e) {
-    console.log(e);
+    console.log(e + "api");
   }
 };

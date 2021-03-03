@@ -5,7 +5,9 @@ import {
   View,
   Text,
   Image,
-  FlatList
+  FlatList,
+  TouchableHighlight,
+  Alert,
 } from 'react-native';
 import { 
   Modal, 
@@ -15,7 +17,7 @@ import {
   ActivityIndicator 
 } from 'react-native-paper';
 import { styles } from './style';
-import { watchApiData } from '../../redux/actions/searchActions';
+import { watchApiData } from '../../redux/actions/selectActions';
 import { RootState } from '../../redux/reducers/rootReducer';
 
 export const HomeScreen = ({ navigation }: HomeProps) => {
@@ -25,11 +27,13 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
   const [visible, setVisible] = React.useState(false);
   const hideModal = () => setVisible(false);
 
-  const loading = useSelector((state: RootState) => state.searchReducer.loading);
-  const competitions = useSelector((state: RootState) => state.searchReducer.data);
+  const loading = useSelector((state: RootState) => state.selectReducer.loading);
+  console.log(loading);
+  
+  const competitions = useSelector((state: RootState) => state.selectReducer.data);
   // console.log(competitions);
 
-  const startSearch = () => {
+  const selectLeague = () => {
     dispatch(watchApiData());
     setVisible(true);
     // navigation.navigate('ListResult')
@@ -42,28 +46,33 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
           <Modal 
             visible={visible} 
             onDismiss={hideModal} 
-            contentContainerStyle={styles.modal}
+            contentContainerStyle={styles.home_modal}
           >
-            <ActivityIndicator animating={loading} color={'red'} />
+            <ActivityIndicator 
+              animating={loading} 
+              color={'red'}
+              size={'large'} 
+              style={styles.load_indicator} />
             <FlatList
               data={competitions}
               renderItem={({ item }) => (
-                <View>
-                  <Image 
-                    style={styles.logo}
-                    source={{
-                      uri: `${item.emblemUrl}`,
-                    }}
-                  />
-                  <Text>{item.name}</Text>          
-                </View>
+                <TouchableHighlight
+                  activeOpacity={0.6}
+                  underlayColor="#DDDDDD" 
+                  onPress={() => alert("Hello!")}                 
+                >
+                  <View style={styles.league_cell}>
+                    <Text style={styles.league_name}>{item.name}</Text>          
+                    <Text style={styles.league_area}>{item.area.name}</Text>          
+                  </View>
+                </TouchableHighlight>
               )}
               keyExtractor={item => item.id}
             />
           </Modal>
         </Portal>
-        <Button style={styles.button} onPress={startSearch}>
-          Select a Leage
+        <Button style={styles.home_button} onPress={selectLeague}>
+          Select a League
         </Button>
       </Provider>
     </View>

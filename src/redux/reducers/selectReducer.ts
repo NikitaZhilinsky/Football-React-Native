@@ -2,8 +2,10 @@ import {
   REQUEST_API_DATA,
   requestApiDataType,
   RECEIVE_API_DATA, 
-  receiveApiDataType 
-} from "../actions/searchActions";
+  receiveApiDataType,
+  FAILED_API_DATA,
+  failedApiDataType
+} from "../actions/selectActions";
 
 export type Competition = {
   area: {
@@ -35,9 +37,9 @@ const initialState = {
   loading: false,
 }
 
-export type ActionsTypes = requestApiDataType | receiveApiDataType
+export type ActionsTypes = requestApiDataType | receiveApiDataType | failedApiDataType;
 
-export const searchReducer = (state = initialState, action: ActionsTypes): initialStateType => {
+export const selectReducer = (state = initialState, action: ActionsTypes): initialStateType => {
   switch (action.type) {
     case REQUEST_API_DATA:
       return {
@@ -49,6 +51,11 @@ export const searchReducer = (state = initialState, action: ActionsTypes): initi
         ...state,
         data: action.data,
         loading: false,
+      }
+    case FAILED_API_DATA:
+      return {
+        ...state,
+        loading: true,
       }
     default:
       return state;
