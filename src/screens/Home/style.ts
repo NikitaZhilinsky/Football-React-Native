@@ -15,7 +15,8 @@ type Styles = {
   league_name: TextStyle,
   league_area: TextStyle,
   // logo: ImageStyle,
-  home_button: ButtonProps | ViewStyle,
+  home_button: ViewStyle,
+  button_title: TextStyle,
 }
 
 export const styles = StyleSheet.create<Styles>({
@@ -27,8 +28,7 @@ export const styles = StyleSheet.create<Styles>({
   },
   home_modal: {
     backgroundColor: 'white',
-    height: 630, 
-    margin: 10
+    height: 630,
   },
   load_indicator: {
     position: 'absolute',
@@ -49,6 +49,11 @@ export const styles = StyleSheet.create<Styles>({
   //   height: 15,
   // },
   home_button: {
-    marginTop: 30,
-  }
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button_title: {
+    fontSize: 22,
+  },
 });

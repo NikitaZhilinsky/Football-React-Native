@@ -12,8 +12,9 @@ export type Team = {
   area: {
     id: number,
     name: string,
-  }
+  },
   clubColors: string,
+  // crestUrl: ,
   email: string,
   founded: number,
   id: number,
@@ -23,7 +24,7 @@ export type Team = {
   shortName: string,
   tla: string,
   venue: string,
-  website: string,
+  // website: ,
 }
 
 type initialStateType = {
@@ -48,7 +49,7 @@ export const teamsReducer = (state = initialState, action: ActionsTypes): initia
     case RECEIVE_TEAMS_DATA:
       return {
         ...state,
-        data: action.data,
+        data: action.teams,
         loading: false,
       }
     case FAILED_TEAMS_DATA:

@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import { leaguesReducer } from './leaguesReducer';
 import { teamsReducer } from './teamsReducer';
+import { standingsReducer } from './standingsReducer';
 
 const state = {
   leaguesReducer,
-  teamsReducer
+  teamsReducer,
+  standingsReducer,
 };
 
 const rootReducer = combineReducers({

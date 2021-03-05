@@ -10,6 +10,7 @@ import {
 export type Competition = {
   area: {
     countryCode: string,
+    // ensignUrl: ,
     id: number,
     name: string,
   },
@@ -19,7 +20,9 @@ export type Competition = {
     endDate: string,
     id: number,
     startDate: string,
+    // winner: ,
   },
+  // emblemUrl: ,
   id: number,
   lastUpdated: string,
   name: string,
@@ -49,7 +52,7 @@ export const leaguesReducer = (state = initialState, action: ActionsTypes): init
     case RECEIVE_LEAGUES_DATA:
       return {
         ...state,
-        data: action.data,
+        data: action.league,
         loading: false,
       }
     case FAILED_LEAGUES_DATA:

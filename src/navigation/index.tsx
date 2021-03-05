@@ -4,7 +4,7 @@ import { RootStackParamList } from './types';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import { HomeScreen } from '../screens/Home/Home';
-import { ListResult } from '../screens/ListResult/ListResult';
+import { Teams } from '../screens/Teams/Teams';
 import { Property } from '../screens/Property/Property';
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -17,9 +17,6 @@ const StackNavigator = () => {
         component={HomeScreen} 
         options={{ 
           title: "Football Stats",
-          headerStyle: {
-
-          },
           headerTitleStyle: {
             fontWeight: 'bold',
             textAlign: "center",
@@ -27,10 +24,10 @@ const StackNavigator = () => {
         }} 
       />
       <Stack.Screen 
-        name="ListResult" 
-        component={ListResult} 
+        name="Teams" 
+        component={Teams} 
         options={{ 
-          title: "Results",
+          title: "Teams",
           headerTitleStyle: {
             fontWeight: 'bold',
           }, 

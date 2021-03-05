@@ -2,7 +2,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 export type RootStackParamList = {
   HomeScreen: undefined;
-  ListResult: undefined;
+  Teams: undefined;
   Property: undefined;
 };
 
@@ -15,11 +15,11 @@ export type HomeProps = {
   navigation: HomeScreenNavigationProp;
 };
 
-type ListResultScreenNavigationProp = StackNavigationProp<
+type TeamsScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'ListResult'
+  'Teams'
 >;
 
 export type ResultProps = {
-  navigation: ListResultScreenNavigationProp;
+  navigation: TeamsScreenNavigationProp;
 };

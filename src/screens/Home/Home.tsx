@@ -39,7 +39,7 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
   }
   const getTeams = (id: number) => {
     dispatch(watchTeamsData(id));
-    navigation.navigate('ListResult');
+    navigation.navigate('Teams');
   }
 
   return (
@@ -51,11 +51,14 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
             onDismiss={hideModal} 
             contentContainerStyle={styles.home_modal}
           >
+            {(loading) 
+            ?
             <ActivityIndicator 
               animating={loading} 
               color={'red'}
               size={'large'} 
               style={styles.load_indicator} />
+            :
             <FlatList
               data={competitions}
               renderItem={({ item }) => (
@@ -71,12 +74,12 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
                   </View>
                 </TouchableHighlight>
               )}
-              keyExtractor={item => item.id}
-            />
+              keyExtractor={item => item.id.toString()}
+            />}
           </Modal>
         </Portal>
         <Button style={styles.home_button} onPress={selectLeague}>
-          Select a League
+          <Text style={styles.button_title}>Select a League</Text>
         </Button>
       </Provider>
     </View>
