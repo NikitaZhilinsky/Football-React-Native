@@ -11,6 +11,7 @@ type Styles = {
   team_cell: ViewStyle,
   team_logo: ImageStyle,
   team_name: TextStyle,
+  team_modal: ViewStyle,
 }
 
 export const styles = StyleSheet.create<Styles>({
@@ -34,4 +35,7 @@ export const styles = StyleSheet.create<Styles>({
   team_name: {
     fontSize: 21
   },
+  team_modal: {
+    backgroundColor: 'white',
+  }
 }); 

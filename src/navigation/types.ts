@@ -2,8 +2,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 export type RootStackParamList = {
   HomeScreen: undefined;
-  Teams: undefined;
-  Property: undefined;
+  TeamsScreen: undefined;
 };
 
 type HomeScreenNavigationProp = StackNavigationProp<
@@ -17,9 +16,9 @@ export type HomeProps = {
 
 type TeamsScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'Teams'
+  'TeamsScreen'
 >;
 
-export type ResultProps = {
+export type TeamsProps = {
   navigation: TeamsScreenNavigationProp;
 };

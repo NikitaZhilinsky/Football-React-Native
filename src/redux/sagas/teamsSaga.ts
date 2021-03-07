@@ -1,10 +1,10 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { watchTeamsDataType } from "../actions/teamsActions";
 import { fetchTeamsData } from "../api/teamsAPI";
 import { 
   requestTeamsData, 
   receiveTeamsData, 
   WATCH_TEAMS_DATA, 
+  watchTeamsDataType,
   failedTeamsData 
 } from "../actions/teamsActions";
 import { 
@@ -28,7 +28,6 @@ function* getApiData(action: watchTeamsDataType) {
       }).then(response => response.json())
     });
     
-    yield put(requestStandingsData());
     const stand = yield call(() => {
       return fetch(`http://api.football-data.org/v2/competitions/${action.leagueId}/standings?standingType=TOTAL`, {
         headers: {
@@ -36,7 +35,7 @@ function* getApiData(action: watchTeamsDataType) {
         },
       }).then(response => response.json())
     });
-    
+
     yield put(receiveTeamsData(data.teams));
     yield put(receiveStandingsData(stand.standings));
   } catch (e) {

@@ -4,8 +4,7 @@ import { RootStackParamList } from './types';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import { HomeScreen } from '../screens/Home/Home';
-import { Teams } from '../screens/Teams/Teams';
-import { Property } from '../screens/Property/Property';
+import { TeamsScreen } from '../screens/Teams/Teams';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -24,20 +23,10 @@ const StackNavigator = () => {
         }} 
       />
       <Stack.Screen 
-        name="Teams" 
-        component={Teams} 
+        name="TeamsScreen" 
+        component={TeamsScreen} 
         options={{ 
           title: "Teams",
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          }, 
-        }} 
-      />
-      <Stack.Screen 
-        name="Property" 
-        component={Property} 
-        options={{ 
-          title: "Property",
           headerTitleStyle: {
             fontWeight: 'bold',
           }, 

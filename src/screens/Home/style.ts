@@ -28,7 +28,7 @@ export const styles = StyleSheet.create<Styles>({
   },
   home_modal: {
     backgroundColor: 'white',
-    height: 630,
+    height: 555,
   },
   load_indicator: {
     position: 'absolute',
