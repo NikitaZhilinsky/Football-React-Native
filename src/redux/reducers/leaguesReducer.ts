@@ -10,7 +10,7 @@ import {
 export type Competition = {
   area: {
     countryCode: string,
-    // ensignUrl: ,
+    ensignUrl: null | string,
     id: number,
     name: string,
   },
@@ -20,9 +20,9 @@ export type Competition = {
     endDate: string,
     id: number,
     startDate: string,
-    // winner: ,
+    winner: null | string,
   },
-  // emblemUrl: ,
+  emblemUrl: string,
   id: number,
   lastUpdated: string,
   name: string,
@@ -30,12 +30,20 @@ export type Competition = {
   plan: string,
 }
 
+export type LeaguesResponse = {
+  competitions: Competition[],
+  count: number,
+  filters: {
+    plan: string,
+  },
+}
+
 type initialStateType = {
   data: Competition[],
   loading: boolean,
 }
 
-const initialState = {
+const initialState: initialStateType = {
   data: [],
   loading: false,
 }

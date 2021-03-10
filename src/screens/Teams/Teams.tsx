@@ -27,13 +27,13 @@ export const TeamsScreen = ({ navigation }: TeamsProps) => {
   // console.log(teamLoading);
 
   const teams = useSelector((state: RootState) => state.teamsReducer.data)
-  // console.log(teams);
+  console.log(teams);
 
   const statLoading = useSelector((state: RootState) => state.standingsReducer.loading);
   // console.log(statLoading);
 
   const standings = useSelector((state: RootState) => state.standingsReducer.data)
-  // console.log(standings);
+  console.log(standings);
 
   const teamStat = useSelector((state: RootState) => state.standingsReducer.teamStat)
   // console.log(teamStat);
@@ -47,35 +47,33 @@ export const TeamsScreen = ({ navigation }: TeamsProps) => {
   
   return (
     <View style={styles.result_container}>
-      {(teamLoading)
-      ?
-      <ActivityIndicator 
-        animating={teamLoading} 
-        color={'red'}
-        size={'large'} 
-        style={styles.load_indicator} 
-      />
-      :
-      <FlatList
-        data={teams}
-        renderItem={({ item }) => (
-          <TouchableHighlight
-            activeOpacity={0.6}
-            underlayColor="#DDDDDD" 
-            onPress={() => getStat(standings, item.id)}            
-          >
-            <View style={styles.team_cell}>
-              {/* <Image
-                source={{uri: item.crestUrl}}
-              /> */}
-              <Text style={styles.team_name}>
-                {item.name}
-              </Text>                    
-            </View>
-          </TouchableHighlight>
-        )}
-        keyExtractor={item => item.id.toString()}
-      />
+      {(teamLoading) ?
+        <ActivityIndicator 
+          animating={teamLoading} 
+          color={'#028d45'}
+          size={'large'} 
+          style={styles.load_indicator} 
+        /> :
+        <FlatList
+          data={teams}
+          renderItem={({ item }) => (
+            <TouchableHighlight
+              activeOpacity={0.6}
+              underlayColor="#DDDDDD" 
+              onPress={() => getStat(standings, item.id)}            
+            >
+              <View style={styles.team_cell}>
+                {/* <Image
+                  source={{uri: item.crestUrl}}
+                /> */}
+                <Text style={styles.team_name}>
+                  {item.name}
+                </Text>                    
+              </View>
+            </TouchableHighlight>
+          )}
+          keyExtractor={item => item.id.toString()}
+        />
       }
       <Provider>
         <Portal>
@@ -84,29 +82,41 @@ export const TeamsScreen = ({ navigation }: TeamsProps) => {
             onDismiss={hideModal} 
             contentContainerStyle={styles.team_modal}
           >
-            {(statLoading)
-            ?
-            <ActivityIndicator 
-              animating={statLoading} 
-              color={'red'}
-              size={'large'} 
-              style={styles.load_indicator} 
-            />
-            :
-            <View>
-              <Text>
-                Position: {teamStat.position}
-              </Text>
-              <Text>
-                Won: {teamStat.won}
-              </Text>
-              <Text>
-                Lost: {teamStat.lost}
-              </Text>
-              <Text>
-                Draw: {teamStat.draw}
-              </Text>
-            </View>
+            {(statLoading) ?
+              <ActivityIndicator 
+                animating={statLoading} 
+                color={'#028d45'}
+                size={'large'} 
+                style={styles.load_indicator} 
+              /> :
+              <View style={styles.team_statistics}>
+                <Text style={styles.team_statistics_title}>
+                  Position: 
+                  <Text style={styles.team_statistics_value}> {teamStat.position}</Text>
+                </Text>
+                <Text style={styles.team_statistics_title}>
+                  Points: 
+                  <Text style={styles.team_statistics_value}> {teamStat.points}</Text>
+                </Text>
+                <Text style={styles.team_statistics_title}>
+                  Played Games: 
+                  <Text style={styles.team_statistics_value}> {teamStat.playedGames}</Text>
+                </Text>
+                <View style={styles.team_statistics_games}>
+                  <Text style={styles.team_statistics_title}>
+                    Won: 
+                    <Text style={styles.team_statistics_value}> {teamStat.won}</Text>
+                  </Text>
+                  <Text style={styles.team_statistics_title}>
+                    Lost: 
+                    <Text style={styles.team_statistics_value}> {teamStat.lost}</Text>
+                  </Text>
+                  <Text style={styles.team_statistics_title}>
+                    Draw: 
+                    <Text style={styles.team_statistics_value}> {teamStat.draw}</Text>
+                  </Text>
+                </View>
+              </View>      
             }
           </Modal>
         </Portal>

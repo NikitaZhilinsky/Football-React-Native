@@ -9,11 +9,12 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import { 
+  DefaultTheme,
   Modal, 
   Portal, 
   Provider, 
   Button, 
-  ActivityIndicator 
+  ActivityIndicator, 
 } from 'react-native-paper';
 import { styles } from './style';
 import { watchLeaguesData } from '../../redux/actions/leaguesActions';
@@ -40,11 +41,19 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
   const getTeams = (id: number) => {
     dispatch(watchTeamsData(id));
     navigation.navigate('TeamsScreen');
-  }
+  };
+
+  const theme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: '#028d45',
+    },
+  };
 
   return (
     <View style={styles.home_container}>
-      <Provider>
+      <Provider theme={theme}>
         <Portal>
           <Modal 
             visible={visible} 
@@ -55,7 +64,7 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
             ?
             <ActivityIndicator 
               animating={loading} 
-              color={'red'}
+              color={'#028d45'}
               size={'large'} 
               style={styles.load_indicator} 
             />

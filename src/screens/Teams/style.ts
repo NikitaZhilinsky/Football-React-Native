@@ -12,6 +12,10 @@ type Styles = {
   team_logo: ImageStyle,
   team_name: TextStyle,
   team_modal: ViewStyle,
+  team_statistics: ViewStyle,
+  team_statistics_title: TextStyle,
+  team_statistics_value: TextStyle,
+  team_statistics_games: ViewStyle,
 }
 
 export const styles = StyleSheet.create<Styles>({
@@ -33,9 +37,24 @@ export const styles = StyleSheet.create<Styles>({
     // height: 50,
   },
   team_name: {
-    fontSize: 21
+    fontSize: 21,
   },
   team_modal: {
     backgroundColor: 'white',
-  }
+  },
+  team_statistics: {
+    padding: 15,
+  },
+  team_statistics_title: {
+    fontSize: 21,
+    borderBottomWidth: 1,
+    marginBottom: 10,
+  },
+  team_statistics_value: {
+    fontWeight: 'bold',
+  },
+  team_statistics_games: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 }); 

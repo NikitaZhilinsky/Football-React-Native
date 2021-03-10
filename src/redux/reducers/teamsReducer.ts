@@ -14,7 +14,7 @@ export type Team = {
     name: string,
   },
   clubColors: string,
-  // crestUrl: ,
+  crestUrl: string,
   email: string,
   founded: number,
   id: number,
@@ -24,7 +24,30 @@ export type Team = {
   shortName: string,
   tla: string,
   venue: string,
-  // website: ,
+  website: string,
+}
+
+export type TeamsResponse = {
+  competition: {
+    area: {
+      id: number, 
+      name: string,
+    },
+    code: string,
+    id: number, 
+    lastUpdated: string,
+    name: string,
+    plan: string,
+  },
+  filters: {},
+  season: {
+    currentMatchday: number, 
+    endDate: string,
+    id: number, 
+    startDate: string,
+    winner: null | string,
+  },
+  teams: Team[],
 }
 
 type initialStateType = {
@@ -32,7 +55,7 @@ type initialStateType = {
   loading: boolean,
 }
 
-const initialState = {
+const initialState: initialStateType = {
   data: [],
   loading: false,
 }

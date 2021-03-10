@@ -10,28 +10,51 @@ import {
 } from "../actions/standingsActions";
 
 export type Statistics = {
-  draw: number,
+  draw: null | number,
   form: string,
-  goalDifference: number,
-  goalsAgainst: number,
-  goalsFor: number,
-  lost: number,
-  playedGames: number,
-  points: number,
-  position: number,
+  goalDifference: null | number,
+  goalsAgainst: null | number,
+  goalsFor: null | number,
+  lost: null | number,
+  playedGames: null | number,
+  points: null | number,
+  position: null | number,
   team: {
-    // crestUrl: ,
-    id: number,
+    crestUrl: string,
+    id: null | number,
     name: string,
   },
-  won: number,
+  won: null | number,
 }
 
 export type Standing = {
-  // group: ,
+  group: null | string,
   stage: string,
-  table: Statistics,
+  table: Statistics[],
   type: string,
+}
+
+export type StandingsResponse = {
+  competition: {
+    area: {
+      id: number, 
+      name: string,
+    },
+    code: string,
+    id: number, 
+    lastUpdated: string,
+    name: string,
+    plan: string,
+  },
+  filters: {},
+  season: {
+    currentMatchday: number, 
+    endDate: string,
+    id: number, 
+    startDate: string,
+    winner: null | string,
+  },
+  standings: Standing[],
 }
 
 type initialStateType = {
@@ -40,10 +63,26 @@ type initialStateType = {
   teamStat: Statistics,
 }
 
-const initialState = {
+const initialState: initialStateType = {
   data: [],
   loading: false,
-  teamStat: {},
+  teamStat: {
+    draw: null,
+    form: "",
+    goalDifference: null,
+    goalsAgainst: null,
+    goalsFor: null,
+    lost: null,
+    playedGames: null,
+    points: null,
+    position: null,
+    team: {
+      crestUrl: "",
+      id: null,
+      name: "",
+    },
+    won: null,
+  },
 }
 
 export type ActionsTypes = requestStandingsDataType | receiveStandingsDataType | failedStandingsDataType | filterStandingsDataType;

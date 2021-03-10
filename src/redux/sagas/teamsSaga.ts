@@ -1,5 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { fetchTeamsData } from "../api/teamsAPI";
+import { fetchStandingsData } from "../api/standingsAPI";
 import { 
   requestTeamsData, 
   receiveTeamsData, 
@@ -12,29 +13,15 @@ import {
   receiveStandingsData,  
   failedStandingsData 
 } from "../actions/standingsActions";
+import { StandingsResponse } from "../reducers/standingsReducer";
+import { TeamsResponse } from "../reducers/teamsReducer";
 
 function* getApiData(action: watchTeamsDataType) {
   try {
-    // yield put(requestTeamsData());
-    // const data = yield call(fetchTeamsData(action.leagueId));
-    // yield put(receiveTeamsData(data.teams));
-    
     yield put(requestTeamsData());
-    const data = yield call(() => {
-      return fetch(`http://api.football-data.org/v2/competitions/${action.leagueId}/teams`, {
-        headers: {
-          "X-Auth-Token": "9053d3414524438e9f1753cf3f3732cb",
-        },
-      }).then(response => response.json())
-    });
     
-    const stand = yield call(() => {
-      return fetch(`http://api.football-data.org/v2/competitions/${action.leagueId}/standings?standingType=TOTAL`, {
-        headers: {
-          "X-Auth-Token": "9053d3414524438e9f1753cf3f3732cb",
-        },
-      }).then(response => response.json())
-    });
+    const data: TeamsResponse = yield call(fetchTeamsData, action.leagueId);
+    const stand: StandingsResponse = yield call(fetchStandingsData, action.leagueId);
 
     yield put(receiveTeamsData(data.teams));
     yield put(receiveStandingsData(stand.standings));
