@@ -1,10 +1,8 @@
-import { transform } from '@babel/core';
 import { 
   StyleSheet, 
   ViewStyle, 
   TextStyle, 
   ImageStyle, 
-  ButtonProps, 
 } from 'react-native';
 
 type Styles = {

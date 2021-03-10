@@ -16,8 +16,12 @@ const StackNavigator = () => {
         component={HomeScreen} 
         options={{ 
           title: "Football Stats",
+          headerStyle: {
+            backgroundColor: "#028d45",
+          },
           headerTitleStyle: {
-            fontWeight: 'bold',
+            color: "#fff",
+            fontWeight: "bold",
             textAlign: "center",
           }, 
         }} 
@@ -28,7 +32,8 @@ const StackNavigator = () => {
         options={{ 
           title: "Teams",
           headerTitleStyle: {
-            fontWeight: 'bold',
+            color: "#028d45",
+            fontWeight: "bold",
           }, 
         }} 
       />
@@ -40,7 +45,8 @@ export const AppNavigationContainer = () => {
   return (
     <NavigationContainer>
       <StatusBar
-        barStyle="light-content" />
+        barStyle="light-content"
+        backgroundColor="#028d45" />
       <StackNavigator />  
     </NavigationContainer>
   )

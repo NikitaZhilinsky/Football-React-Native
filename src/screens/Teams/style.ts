@@ -14,6 +14,9 @@ type Styles = {
   team_modal: ViewStyle,
   team_statistics: ViewStyle,
   team_statistics_title: TextStyle,
+  team_statistics_won: TextStyle,
+  team_statistics_lost: TextStyle,
+  team_statistics_draw: TextStyle,
   team_statistics_value: TextStyle,
   team_statistics_games: ViewStyle,
 }
@@ -48,6 +51,24 @@ export const styles = StyleSheet.create<Styles>({
   team_statistics_title: {
     fontSize: 21,
     borderBottomWidth: 1,
+    marginBottom: 10,
+  },
+  team_statistics_won: {
+    fontSize: 21,
+    borderBottomWidth: 3,
+    borderColor: '#028d45',
+    marginBottom: 10,
+  },
+  team_statistics_lost: {
+    fontSize: 21,
+    borderBottomWidth: 3,
+    borderColor: 'red',
+    marginBottom: 10,
+  },
+  team_statistics_draw: {
+    fontSize: 21,
+    borderBottomWidth: 3,
+    borderColor: 'orange',
     marginBottom: 10,
   },
   team_statistics_value: {

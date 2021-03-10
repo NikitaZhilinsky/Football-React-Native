@@ -1,47 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HomeProps } from '../../navigation/types';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  View,
-  Text,
-  Image,
-  FlatList,
-  TouchableHighlight,
-} from 'react-native';
+import { useSelector } from 'react-redux';
+import { View } from 'react-native';
 import { 
   DefaultTheme,
-  Modal, 
   Portal, 
   Provider, 
-  Button, 
   ActivityIndicator, 
 } from 'react-native-paper';
 import { styles } from './style';
-import { watchLeaguesData } from '../../redux/actions/leaguesActions';
-import { watchTeamsData } from '../../redux/actions/teamsActions';
 import { RootState } from '../../redux/reducers/rootReducer';
+import { ModalWindow } from '../../components/Modal';
+// import { getcompetitions } from '../../components/Modal';
+import { LeaguesList } from './components/LeaguesList'
+import { SelectButton } from './components/LeaguesButton';
 
 export const HomeScreen = ({ navigation }: HomeProps) => {
 
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = useState(false);
   const hideModal = () => setVisible(false);
 
   const loading = useSelector((state: RootState) => state.leaguesReducer.loading);
   // console.log(loading);
   
-  const competitions = useSelector((state: RootState) => state.leaguesReducer.data);
+  // const competitions = useSelector((state: RootState) => state.leaguesReducer.data);
+  // const competitions = useSelector(getcompetitions);
   // console.log(competitions);
-
-  const dispatch = useDispatch();
-
-  const selectLeague = () => {
-    dispatch(watchLeaguesData());
-    setVisible(true);
-  }
-  const getTeams = (id: number) => {
-    dispatch(watchTeamsData(id));
-    navigation.navigate('TeamsScreen');
-  };
 
   const theme = {
     ...DefaultTheme,
@@ -55,48 +39,21 @@ export const HomeScreen = ({ navigation }: HomeProps) => {
     <View style={styles.home_container}>
       <Provider theme={theme}>
         <Portal>
-          <Modal 
-            visible={visible} 
-            onDismiss={hideModal} 
-            contentContainerStyle={styles.home_modal}
-          >
-            {(loading) 
-            ?
-            <ActivityIndicator 
-              animating={loading} 
-              color={'#028d45'}
-              size={'large'} 
-              style={styles.load_indicator} 
-            />
-            :
-            <FlatList
-              data={competitions}
-              renderItem={({ item }) => (
-                <TouchableHighlight
-                  activeOpacity={0.6}
-                  underlayColor="#DDDDDD"                 
-                  onPress={() => getTeams(item.id)}                 
-                >
-                  <View style={styles.league_cell}>
-                    <Text style={styles.league_name}>
-                      {item.name}
-                    </Text>          
-                    <Text style={styles.league_area}>
-                      {item.area.name}
-                    </Text>          
-                  </View>
-                </TouchableHighlight>
-              )}
-              keyExtractor={item => item.id.toString()}
-            />
+          <ModalWindow visible={visible} hideModal={hideModal} 
+            children = 
+            {(loading) ?
+              <ActivityIndicator 
+                animating={loading} 
+                color={'#028d45'}
+                size={'large'} 
+                style={styles.load_indicator} 
+              />
+              :
+              <LeaguesList navigation={navigation}/>
             }
-          </Modal>
+          />
         </Portal>
-        <Button style={styles.home_button} onPress={selectLeague}>
-          <Text style={styles.button_title}>
-            Select a League
-          </Text>
-        </Button>
+        <SelectButton updateVisible={setVisible}/>
       </Provider>
     </View>
   );

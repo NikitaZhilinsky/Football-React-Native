@@ -1,0 +1,49 @@
+import React from 'react';
+import {
+  View,
+  Text,
+  Image,
+  FlatList,
+  TouchableHighlight,
+} from 'react-native';
+import { styles } from '../style';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../redux/reducers/rootReducer';
+import { watchTeamsData } from '../../../redux/actions/teamsActions';
+import { HomeProps } from '../../../navigation/types';
+
+export const LeaguesList = ({ navigation }: HomeProps) => {
+
+  const competitions = useSelector((state: RootState) => state.leaguesReducer.data);
+  // console.log(competitions);
+
+  const dispatch = useDispatch();
+
+  const getTeams = (id: number) => {
+    dispatch(watchTeamsData(id));
+    navigation.navigate('TeamsScreen');
+  };
+
+  return (
+    <FlatList
+      data={competitions}
+      renderItem={({ item }) => (
+        <TouchableHighlight
+          activeOpacity={0.6}
+          underlayColor="#DDDDDD"                 
+          onPress={() => getTeams(item.id)}                 
+        >
+          <View style={styles.league_cell}>
+            <Text style={styles.league_name}>
+              {item.name}
+            </Text>          
+            <Text style={styles.league_area}>
+              {item.area.name}
+            </Text>          
+          </View>
+        </TouchableHighlight>
+      )}
+      keyExtractor={item => item.id.toString()}
+    />
+  );
+}
