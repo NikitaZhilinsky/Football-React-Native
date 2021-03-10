@@ -1,21 +1,17 @@
-import React from 'react';
-import { TeamsProps } from '../../navigation/types';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { View } from 'react-native';
-import { 
-  Modal, 
-  Portal,
-  Provider, 
-} from 'react-native-paper';
-import { ActivityIndicator } from 'react-native-paper';
+import { Portal, Provider } from 'react-native-paper';
 import { styles } from './style';
 import { RootState } from '../../redux/reducers/rootReducer';
+import { ModalWindow } from '../../components/ModalWindow';
 import { TeamsList } from './components/TeamsList';
 import { TeamsStatistics } from './components/TeamsStatistics';
+import { LoadIndicator } from '../../components/LoadIndicator';
 
-export const TeamsScreen = ({ navigation }: TeamsProps) => {
+export const TeamsScreen = () => {
 
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = useState(false);
   const hideModal = () => setVisible(false);
 
   const teamLoading = useSelector((state: RootState) => state.teamsReducer.loading);
@@ -27,31 +23,23 @@ export const TeamsScreen = ({ navigation }: TeamsProps) => {
   return (
     <View style={styles.result_container}>
       {(teamLoading) ?
-        <ActivityIndicator 
-          animating={teamLoading} 
-          color={'#028d45'}
-          size={'large'} 
-          style={styles.load_indicator} 
-        /> :
+        <LoadIndicator loading={teamLoading} style={styles.load_indicator} />
+        :
         <TeamsList updateVisible={setVisible}/>
       }
       <Provider>
         <Portal>
-          <Modal 
+          <ModalWindow
             visible={visible} 
-            onDismiss={hideModal} 
-            contentContainerStyle={styles.team_modal}
-          >
+            hideModal={hideModal}
+            style={styles.team_modal}
+            children=
             {(statLoading) ?
-              <ActivityIndicator 
-                animating={statLoading} 
-                color={'#028d45'}
-                size={'large'} 
-                style={styles.load_indicator} 
-              /> :
+              <LoadIndicator loading={statLoading} style={styles.load_indicator} />
+              :
               <TeamsStatistics />
             }
-          </Modal>
+          />
         </Portal>
       </Provider>
     </View>

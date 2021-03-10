@@ -1,20 +1,21 @@
 import React from 'react';
 import { Modal } from 'react-native-paper';
-import { styles } from '../screens/Home/style';
+import { ViewStyle } from 'react-native';
 
 type Props = {
   visible: boolean,
   hideModal: () => void,
+  style: ViewStyle,
   children: any,
 }
 
-export const ModalWindow = ( {visible, hideModal, children}: Props ) => {
+export const ModalWindow = ( {visible, hideModal, style, children}: Props ) => {
 
   return (
     <Modal 
       visible={visible} 
       onDismiss={hideModal} 
-      contentContainerStyle={styles.home_modal}>   
+      contentContainerStyle={style}>   
       {children}
     </Modal>
   );

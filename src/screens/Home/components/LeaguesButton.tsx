@@ -1,10 +1,9 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React  from 'react';
 import { Text } from 'react-native';
 import { Button } from 'react-native-paper';
 import { styles } from '../style';
 import { useDispatch } from 'react-redux';
 import { watchLeaguesData } from '../../../redux/actions/leaguesActions';
-
 
 type Props = {
   updateVisible: (visible: boolean) => void, 

@@ -31,7 +31,6 @@ export const TeamsList = ( {updateVisible}: Props ) => {
     updateVisible(true);
   }
   
-  
   return (
     <FlatList
       data={teams}

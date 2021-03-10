@@ -4,6 +4,7 @@ import {
   TextStyle, 
   ImageStyle, 
 } from 'react-native';
+import { DefaultTheme } from 'react-native-paper';
 
 type Styles = {
   home_container: ViewStyle,
@@ -16,6 +17,14 @@ type Styles = {
   home_button: ViewStyle,
   button_title: TextStyle,
 }
+
+export const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#028d45',
+  },
+};
 
 export const styles = StyleSheet.create<Styles>({
   home_container: { 
