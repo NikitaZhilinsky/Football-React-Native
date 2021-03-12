@@ -12,7 +12,7 @@ type Props = {
 export const TeamsStatistics = ( {svgURI}: Props ) => {
 
   const teamStat = useSelector(getTeamStatistics)
-  // console.log(teamStat);
+  console.log(teamStat);
 
   return (
     <View style={styles.team_statistics}>

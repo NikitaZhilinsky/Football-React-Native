@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Modal } from 'react-native-paper';
 import { ViewStyle } from 'react-native';
 
@@ -6,10 +6,12 @@ type Props = {
   visible: boolean,
   hideModal: () => void,
   style: ViewStyle,
-  children: any,
+  children: ReactNode,
 }
 
-export const ModalWindow = ( {visible, hideModal, style, children}: Props ) => {
+export const ModalWindow = ( props: Props ) => {
+
+  const { visible, hideModal, style, children } = props;
 
   return (
     <Modal 

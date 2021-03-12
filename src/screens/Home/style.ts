@@ -13,7 +13,7 @@ type Styles = {
   league_cell: ViewStyle,
   league_name: TextStyle,
   league_area: TextStyle,
-  // logo: ImageStyle,
+  league_logo: ImageStyle,
   home_button: ViewStyle,
   button_title: TextStyle,
 }
@@ -35,15 +35,18 @@ export const styles = StyleSheet.create<Styles>({
   },
   home_modal: {
     backgroundColor: 'white',
-    height: 555,
+    height: 515,
   },
   load_indicator: {
     position: 'absolute',
     alignSelf: 'center',
   },
   league_cell: {
-    padding: 15,
+    paddingLeft: 15,
+    paddingVertical: 7,
     borderBottomWidth: 2,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   league_name: {
     fontSize: 21
@@ -51,10 +54,11 @@ export const styles = StyleSheet.create<Styles>({
   league_area: {
 
   },
-  // logo: {
-  //   width: 15,
-  //   height: 15,
-  // },
+  league_logo: {
+    width: 70,
+    height: 70,
+    marginRight: 20,
+  },
   home_button: {
     flex: 1,
     justifyContent: 'center',

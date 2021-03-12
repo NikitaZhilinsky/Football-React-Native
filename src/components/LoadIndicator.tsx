@@ -7,7 +7,9 @@ type Props = {
   style: ViewStyle,
 }
 
-export const LoadIndicator = ( {loading, style}: Props ) => {
+export const LoadIndicator = ( props: Props ) => {
+
+  const { loading, style } = props;
 
   return (
     <ActivityIndicator 
