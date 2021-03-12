@@ -8,13 +8,13 @@ import {
 } from 'react-native';
 import { styles } from '../style';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../redux/reducers/rootReducer';
 import { watchTeamsData } from '../../../redux/actions/teamsActions';
 import { HomeProps } from '../../../navigation/types';
+import { getCompetitions } from '../../../redux/selectors';
 
 export const LeaguesList = ({ navigation }: HomeProps) => {
 
-  const competitions = useSelector((state: RootState) => state.leaguesReducer.data);
+  const competitions = useSelector(getCompetitions);
   // console.log(competitions);
 
   const dispatch = useDispatch();

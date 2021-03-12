@@ -3,21 +3,23 @@ import { useSelector } from 'react-redux';
 import { View } from 'react-native';
 import { Portal, Provider } from 'react-native-paper';
 import { styles } from './style';
-import { RootState } from '../../redux/reducers/rootReducer';
 import { ModalWindow } from '../../components/ModalWindow';
 import { TeamsList } from './components/TeamsList';
 import { TeamsStatistics } from './components/TeamsStatistics';
 import { LoadIndicator } from '../../components/LoadIndicator';
+import { getStatLoading, getTeamsLoading } from '../../redux/selectors';
 
 export const TeamsScreen = () => {
 
   const [visible, setVisible] = useState(false);
   const hideModal = () => setVisible(false);
 
-  const teamLoading = useSelector((state: RootState) => state.teamsReducer.loading);
+  const [svgURI, setSvgURI] = useState("");
+
+  const teamLoading = useSelector(getTeamsLoading);
   // console.log(teamLoading);
 
-  const statLoading = useSelector((state: RootState) => state.standingsReducer.loading);
+  const statLoading = useSelector(getStatLoading);
   // console.log(statLoading);
   
   return (
@@ -25,7 +27,7 @@ export const TeamsScreen = () => {
       {(teamLoading) ?
         <LoadIndicator loading={teamLoading} style={styles.load_indicator} />
         :
-        <TeamsList updateVisible={setVisible}/>
+        <TeamsList updateVisible={setVisible} updateURI={setSvgURI} />
       }
       <Provider>
         <Portal>
@@ -37,7 +39,7 @@ export const TeamsScreen = () => {
             {(statLoading) ?
               <LoadIndicator loading={statLoading} style={styles.load_indicator} />
               :
-              <TeamsStatistics />
+              <TeamsStatistics svgURI={svgURI} />
             }
           />
         </Portal>

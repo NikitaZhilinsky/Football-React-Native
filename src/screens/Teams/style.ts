@@ -36,8 +36,8 @@ export const styles = StyleSheet.create<Styles>({
     borderBottomWidth: 2,
   },
   team_logo: {
-    // width: 50,
-    // height: 50,
+    alignItems: 'center',
+    marginBottom: 20,
   },
   team_name: {
     fontSize: 21,

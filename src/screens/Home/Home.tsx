@@ -4,24 +4,19 @@ import { useSelector } from 'react-redux';
 import { View } from 'react-native';
 import { Portal, Provider } from 'react-native-paper';
 import { styles, theme } from './style'; 
-import { RootState } from '../../redux/reducers/rootReducer';
 import { ModalWindow } from '../../components/ModalWindow';
-// import { getcompetitions } from '../../components/Modal';
 import { LeaguesList } from './components/LeaguesList'
 import { SelectButton } from './components/LeaguesButton';
 import { LoadIndicator } from '../../components/LoadIndicator';
+import { getLeaguesLoading } from '../../redux/selectors';
 
 export const HomeScreen = ({ navigation }: HomeProps) => {
 
   const [visible, setVisible] = useState(false);
   const hideModal = () => setVisible(false);
 
-  const loading = useSelector((state: RootState) => state.leaguesReducer.loading);
+  const loading = useSelector(getLeaguesLoading);
   // console.log(loading);
-  
-  // const competitions = useSelector((state: RootState) => state.leaguesReducer.data);
-  // const competitions = useSelector(getcompetitions);
-  // console.log(competitions);
 
   return (
     <View style={styles.home_container}>

@@ -1,16 +1,28 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { SvgUri } from 'react-native-svg';
 import { styles } from '../style';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux/reducers/rootReducer';
+import { getTeamStatistics } from '../../../redux/selectors';
 
-export const TeamsStatistics = () => {
+type Props = {
+  svgURI: string,
+}
 
-  const teamStat = useSelector((state: RootState) => state.standingsReducer.teamStat)
+export const TeamsStatistics = ( {svgURI}: Props ) => {
+
+  const teamStat = useSelector(getTeamStatistics)
   // console.log(teamStat);
 
   return (
     <View style={styles.team_statistics}>
+      <View style={styles.team_logo}>
+        <SvgUri
+          width="150"
+          height="150"
+          uri={svgURI}
+        />
+      </View>
       <Text style={styles.team_statistics_title}>
         Position: 
         <Text style={styles.team_statistics_value}> {teamStat.position}</Text>

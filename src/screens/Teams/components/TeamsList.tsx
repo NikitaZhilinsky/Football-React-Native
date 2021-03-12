@@ -2,33 +2,34 @@ import React from 'react';
 import {
   View,
   Text,
-  Image,
   FlatList,
   TouchableHighlight,
 } from 'react-native';
 import { styles } from '../style';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../redux/reducers/rootReducer';
 import { watchStandingsData } from '../../../redux/actions/standingsActions';
 import { Standing } from '../../../redux/reducers/standingsReducer';
+import { getStandings, getTeams } from '../../../redux/selectors';
 
 type Props = {
   updateVisible: (visible: boolean) => void, 
+  updateURI: (svgURI: string) => void,
 }
 
-export const TeamsList = ( {updateVisible}: Props ) => {
+export const TeamsList = ( {updateVisible, updateURI}: Props ) => {
 
-  const teams = useSelector((state: RootState) => state.teamsReducer.data)
+  const teams = useSelector(getTeams)
   // console.log(teams);
 
-  const standings = useSelector((state: RootState) => state.standingsReducer.data)
+  const standings = useSelector(getStandings)
   // console.log(standings);
 
   const dispatch = useDispatch();
 
-  const getStat = (standings: Standing[], id: number) => {
+  const getStat = (standings: Standing[], id: number, Url: string) => {
     dispatch(watchStandingsData(standings, id))
     updateVisible(true);
+    updateURI(Url);
   }
   
   return (
@@ -38,12 +39,9 @@ export const TeamsList = ( {updateVisible}: Props ) => {
         <TouchableHighlight
           activeOpacity={0.6}
           underlayColor="#DDDDDD" 
-          onPress={() => getStat(standings, item.id)}            
+          onPress={() => getStat(standings, item.id, item.crestUrl)}            
         >
           <View style={styles.team_cell}>
-            {/* <Image
-              source={{uri: item.crestUrl}}
-            /> */}
             <Text style={styles.team_name}>
               {item.name}
             </Text>                    
